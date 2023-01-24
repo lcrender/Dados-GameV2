@@ -14,9 +14,8 @@ authCtrl.signUp = async (req, res, next) => {
     const token = jwt.sign({id: user._id}, JWTSECRET, {
         expiresIn: 60 * 60 * 1
     })
-    res.json({auth: true, token});
+    res.status(201).json({auth: true, token});
 };
-
 authCtrl.logIn = async (req, res, next) => {
     const {email, password} = req.body;
     const user = await User.findOne({email: email})
@@ -30,16 +29,14 @@ authCtrl.logIn = async (req, res, next) => {
     const token = jwt.sign({id: user._id}, JWTSECRET, {
         expiresIn: 60 * 60 * 1
     })
-    res.json({auth: true, token}); 
+    res.status(201).json({auth: true, token}); 
 };
-
 authCtrl.viewMe = async (req, res, next) => {
     const user = await User.findById(req.userId, { password: 0 });
     if (!user) {
         return res.status(404).send('No user found');
     }
-    res.json(user)
+    res.status(201).json(user)
 };
-
 
 module.exports = authCtrl;

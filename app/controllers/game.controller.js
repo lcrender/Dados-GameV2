@@ -6,19 +6,15 @@ gameCtrl.playRollDice = async (req, res) => {
     const id = req.params.id;
     const game = await new RollGame(id);
     const playerRollDices = await game.playRollGame();
-    res.send(playerRollDices)
+    res.status(201).json(playerRollDices)
 };
-
 gameCtrl.generalRanking = async (req, res) => {
     const players = await Player.find({}, {playHistory: 0, _id: 0, __v: 0}).sort({wonRate: -1});
-   
     let totalWrate = players.reduce((acumulador, actual) => acumulador + actual.wonRate, 0);
     totalWrate = totalWrate / players.length
     const msg = `Total Won Rate: ${totalWrate}`
     res.status(201).send(`${msg}\n${players}`)
-
 };
-
 gameCtrl.getBetterPlayer = async (req, res) => {
     const players = await Player.find({})
     let max = 0;
@@ -28,7 +24,6 @@ gameCtrl.getBetterPlayer = async (req, res) => {
     const betterPlayer = await Player.findOne({wonRate: max}, {_id: 0, __v: 0});
     res.status(201).json({betterPlayer})
 };
-
 gameCtrl.getWorstPlayer = async (req, res) => {
     const players = await Player.find({})
         let min = 100
@@ -45,17 +40,17 @@ gameCtrl.deleteGames = async (req, res) => {
     player.wonRate = 0
     player.playHistory = []
     await player.save()
-    res.status(401).json(player)
-}
+    res.status(201).json(player)
+};
 gameCtrl.viewGames = async (req, res) => {
     try {
         const player = await Player.findById(req.params.id, { playHistory:1, username: 1, _id: 0 });
         if (!player) {
             return res.status(404).send('No player found');
         }
-        res.json(player)
+        res.status(201).json(player)
     } catch (error) {
         res.send(error)
     }
-}
+};
 module.exports = gameCtrl

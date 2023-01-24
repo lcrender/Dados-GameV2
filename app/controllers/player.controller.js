@@ -7,14 +7,13 @@ playerCtrl.newPlayer = async (req, res) => {
             username = "ANONIMO";
         }
         const players = await Player.find({username: username}, {username: 1, _id: 0});
-        //console.log(players[1])
         if (!players || players[0] === undefined || username === "ANONIMO")  {
             const player = await new Player({
             username,
             date: new Date
         });
         await player.save();
-        res.json({player});
+        res.status(201).json(player);
         }
         else {
             res.send("The Username is in use, try with another username")
@@ -29,7 +28,7 @@ playerCtrl.viewAll = async (req, res) => {
         if (!players || players.length < 1) {
             return res.status(404).send('No player found');
         }
-        res.status(201).json(players)
+        res.json({players})
     } catch (error) {
         res.send(error)
     }
@@ -40,7 +39,7 @@ playerCtrl.viewOne = async (req, res) => {
         if (!player) {
             return res.status(404).send('No player found');
         }
-        res.json(player)
+        res.status(201).json(player)
     } catch (error) {
         res.send(error)
     }
@@ -50,7 +49,7 @@ playerCtrl.updatePlayer = async (req, res) => {
         const newName = req.body.username;
         await Player.findByIdAndUpdate(req.params.id, {username: newName}).lean()
         const player = await Player.findById(req.params.id, { password: 0 });
-        res.json(player)
+        res.status(201).json(player)
     } catch (error) {
         res.send(error)
     }

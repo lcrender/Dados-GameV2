@@ -9,11 +9,11 @@ const {
     deleteGames,
     viewGames } = require('../controllers/game.controller');
 
-router.post('/games/:id', playRollDice);
-router.delete('/games/:id', deleteGames);
-router.get('/games/:id', viewGames);
-router.get('/ranking', generalRanking);
-router.get('/better-player', getBetterPlayer);
-router.get('/worst-player', getWorstPlayer);
+router.post('/games/:id', verifyToken, playRollDice);
+router.delete('/games/:id', verifyToken, deleteGames);
+router.get('/games/:id', verifyToken, viewGames);
+router.get('/ranking', verifyToken, generalRanking);
+router.get('/better-player', verifyToken, getBetterPlayer);
+router.get('/worst-player', verifyToken, getWorstPlayer);
 
 module.exports = router;
