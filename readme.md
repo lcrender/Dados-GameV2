@@ -40,34 +40,34 @@ También se crea jugador anónimo enviando un JSON con el username vacío:
 
 VER TODOS LOS JUGADORES:<br>
 GET localhost:4000/players
-<br>
+<br><br>
 MODIFICAR USERNAME DE UN JUGADOR:<br>
 PUT localhost:4000/players/ID 
 {
 “username”: “otro nombre”
 }
-<br>
+<br><br>
 VER UN JUGADOR POR SU ID:<br>
 GET localhost:4000/player/ID
-<br>
+<br><br>
 BORRAR UN JUGADOR POR ID:<br>
 DELETE localhost:4000/player/ID
-<br>
+<br><br>
 JUGAR AL JUEGO:<br>
 POST localhost:4000/games/ID
-<br>
+<br><br>
 BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR: <br>
 DELETE localhost:4000/games/ID
-<br>
+<br><br>
 VER HISTORIAL DE JUGADAS DE UN JUGADOR:<br>
 GET localhost:4000/games/ID
-<br>
+<br><br>
 VER RANKING: <br>
 GET localhost:4000/ranking
-<br>
+<br><br>
 VER MEJOR JUGADOR:<br>
 GET localhost:4000/better-player
-<br>
+<br><br>
 VER PEOR JUGADOR:<br>
 GET localhost:4000/worst-player
-<br><br>
+<br><br><br>
