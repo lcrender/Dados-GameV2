@@ -1,10 +1,7 @@
 indexCtrl = {}
 
 indexCtrl.indexRender = (req, res) => {
-    res.send('Home')
-    //res.status(200).json({
-    //  msg: 'Funcionando'
-    //})
+    res.status(201).send('WELCOME TO DADOS GAME V2')
 };
 
 module.exports = indexCtrl;

@@ -1,13 +1,14 @@
 const Player = require('../models/Player');
-// const jwt = require('jsonwebtoken');
-// const { JWTSECRET } = process.env;
 const playerCtrl = {};
 playerCtrl.newPlayer = async (req, res) => {
     try {
-        const { username } = req.body;
+        let { username } = req.body;
+        if (username === "" || username === undefined) {
+            username = "ANONIMO";
+        }
         const players = await Player.find({username: username}, {username: 1, _id: 0});
-        console.log(players[1])
-        if (!players || players[0] === undefined) {
+        //console.log(players[1])
+        if (!players || players[0] === undefined || username === "ANONIMO")  {
             const player = await new Player({
             username,
             date: new Date
@@ -58,7 +59,7 @@ playerCtrl.deletePlayer = async (req, res) => {
     try {
         const id = req.params.id
         await Player.findByIdAndDelete(id)
-        res.redirect('/all-players');
+        res.redirect('/players');
     } catch (error) {
         res.send(error)
     }

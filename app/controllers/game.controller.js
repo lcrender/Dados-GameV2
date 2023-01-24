@@ -11,8 +11,12 @@ gameCtrl.playRollDice = async (req, res) => {
 
 gameCtrl.generalRanking = async (req, res) => {
     const players = await Player.find({}, {playHistory: 0, _id: 0, __v: 0}).sort({wonRate: -1});
-    console.log(players.wonRate)
-    res.send(players)
+   
+    let totalWrate = players.reduce((acumulador, actual) => acumulador + actual.wonRate, 0);
+    totalWrate = totalWrate / players.length
+    const msg = `Total Won Rate: ${totalWrate}`
+    res.status(201).send(`${msg}\n${players}`)
+
 };
 
 gameCtrl.getBetterPlayer = async (req, res) => {
@@ -35,7 +39,13 @@ gameCtrl.getWorstPlayer = async (req, res) => {
     res.status(201).json({worstPlayer})
 };
 gameCtrl.deleteGames = async (req, res) => {
-    res.send('delete games')
+    const player = await Player.findById(req.params.id);
+    player.totalGames = 0
+    player.gamesWon = 0
+    player.wonRate = 0
+    player.playHistory = []
+    await player.save()
+    res.status(401).json(player)
 }
 gameCtrl.viewGames = async (req, res) => {
     try {

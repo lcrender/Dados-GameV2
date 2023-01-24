@@ -1,4 +1,5 @@
 const { Router } = require('express');
+const verifyToken = require('../middlewares/verifyToken');
 const router = Router();
 const { 
     playRollDice,
