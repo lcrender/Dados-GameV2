@@ -72,4 +72,4 @@ También se crea jugador anónimo enviando un JSON con el username vacío:
 <br><br>
 - VER PEOR JUGADOR:<br>
 `GET localhost:4000/worst-player`
-<br><br><br>
+<br><br><br> s
