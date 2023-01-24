@@ -50,26 +50,26 @@ También se crea jugador anónimo enviando un JSON con el username vacío:
 }
 <br><br>
 - VER UN JUGADOR POR SU ID:<br>
-`GET localhost:4000/player/ID
+`GET localhost:4000/player/ID`
 <br><br>
 - BORRAR UN JUGADOR POR ID:<br>
-DELETE localhost:4000/player/ID
+`DELETE localhost:4000/player/ID`
 <br><br>
 - JUGAR AL JUEGO:<br>
-POST localhost:4000/games/ID
+`POST localhost:4000/games/ID`
 <br><br>
 - BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR: <br>
-DELETE localhost:4000/games/ID
+`DELETE localhost:4000/games/ID`
 <br><br>
 - VER HISTORIAL DE JUGADAS DE UN JUGADOR:<br>
-GET localhost:4000/games/ID
+`GET localhost:4000/games/ID`
 <br><br>
 - VER RANKING: <br>
-GET localhost:4000/ranking
+`GET localhost:4000/ranking`
 <br><br>
 - VER MEJOR JUGADOR:<br>
-GET localhost:4000/better-player
+`GET localhost:4000/better-player`
 <br><br>
 - VER PEOR JUGADOR:<br>
-GET localhost:4000/worst-player
+`GET localhost:4000/worst-player`
 <br><br><br>
