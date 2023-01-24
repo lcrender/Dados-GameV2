@@ -1,12 +1,12 @@
-#DADOS GAME V2
-####PASOS PARA UTILIZAR LA APP
+#DADOS GAME V2<br>
+####PASOS PARA UTILIZAR LA APP<br>
 
 Use el comando `npm install` para instalar todos los modulos necesarios para correr la aplicación.<br> 
-crear archivo .env en la raíz del proyecto con los siguientes datos:<br>
+crear archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
 JWTSECRET=Maradona
-<br>
+<br><br>
 `npm run dev`
-<br>
+<br><br>
 Registrar un administrador:<br>
 POST localhost:4000/signup
 {
