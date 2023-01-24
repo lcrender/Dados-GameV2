@@ -26,47 +26,48 @@ POST localhost:4000/login
 "password": “dieguitoarmando"
 }
 
-CREAR JUGADOR
+CREAR JUGADOR:<br>
 POST localhost:4000/players 
 {
 “username”: “algo"
 }
 
-o sin enviar JSON crea un jugador “ANONIMO"
-También se crea jugador anónimo enviando un JSON con el username vacío:
+Si envias una peticion POST a la URL sin un JSON, la app creara un jugador “ANONIMO".<br>
+También se crea jugador anónimo enviando un JSON con el username vacío: 
 {
 “username”: “”
 }
 
-VER TODOS LOS JUGADORES
+VER TODOS LOS JUGADORES:<br>
 GET localhost:4000/players
-
-MODIFICAR USERNAME DE UN JUGADOR
-PUT localhost:4000/players/ID
+<br>
+MODIFICAR USERNAME DE UN JUGADOR:<br>
+PUT localhost:4000/players/ID 
 {
 “username”: “otro nombre”
 }
-
-VER UN JUGADOR POR SU ID
+<br>
+VER UN JUGADOR POR SU ID:<br>
 GET localhost:4000/player/ID
-
-BORRAR UN JUGADOR POR ID
+<br>
+BORRAR UN JUGADOR POR ID:<br>
 DELETE localhost:4000/player/ID
-
-JUGAR AL JUEGO
+<br>
+JUGAR AL JUEGO:<br>
 POST localhost:4000/games/ID
-
-BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR
+<br>
+BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR: <br>
 DELETE localhost:4000/games/ID
-
-VER HISTORIAL DE JUGADAS DE UN JUGADOR
+<br>
+VER HISTORIAL DE JUGADAS DE UN JUGADOR:<br>
 GET localhost:4000/games/ID
-
-VER RANKING
+<br>
+VER RANKING: <br>
 GET localhost:4000/ranking
-
-VER MEJOR JUGADOR
+<br>
+VER MEJOR JUGADOR:<br>
 GET localhost:4000/better-player
-
-VER PEOR JUGADOR
+<br>
+VER PEOR JUGADOR:<br>
 GET localhost:4000/worst-player
+<br><br>
