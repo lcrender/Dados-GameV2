@@ -8,8 +8,9 @@ JWTSECRET=Maradona
 <br><br>
 `npm run dev`
 <br><br>
-Registrar un administrador:<br>
-POST localhost:4000/signup
+
+- REGISTRAR UN ADMINISTRADOR:<br>
+`POST localhost:4000/signup`
 {
 "email": "admin@dadosv2.com",
 "password": “dieguitoarmando"
@@ -21,14 +22,14 @@ KEY: x-access-token<br>
 VALUE: el valor del token generado<br>
 <br>
 Si ya registraste un administrador puedes iniciar sesión también te devolverá el token para agregar en el header:<br>
-POST localhost:4000/login
+`POST localhost:4000/login`
 {
 "email": "admin@dadosv2.com",
 "password": “dieguitoarmando"
 }
 
-CREAR JUGADOR:<br>
-POST localhost:4000/players 
+- CREAR JUGADOR:<br>
+`POST localhost:4000/players`
 {
 “username”: “algo"
 }
@@ -39,36 +40,36 @@ También se crea jugador anónimo enviando un JSON con el username vacío:
 “username”: “”
 }
 
-VER TODOS LOS JUGADORES:<br>
-GET localhost:4000/players
+- VER TODOS LOS JUGADORES:<br>
+`GET localhost:4000/players`
 <br><br>
-MODIFICAR USERNAME DE UN JUGADOR:<br>
-PUT localhost:4000/players/ID 
+- MODIFICAR USERNAME DE UN JUGADOR:<br>
+`PUT localhost:4000/players/ID`
 {
 “username”: “otro nombre”
 }
 <br><br>
-VER UN JUGADOR POR SU ID:<br>
-GET localhost:4000/player/ID
+- VER UN JUGADOR POR SU ID:<br>
+`GET localhost:4000/player/ID
 <br><br>
-BORRAR UN JUGADOR POR ID:<br>
+- BORRAR UN JUGADOR POR ID:<br>
 DELETE localhost:4000/player/ID
 <br><br>
-JUGAR AL JUEGO:<br>
+- JUGAR AL JUEGO:<br>
 POST localhost:4000/games/ID
 <br><br>
-BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR: <br>
+- BORRAR HISTORIAL DE JUGADAS DE UN JUGADOR: <br>
 DELETE localhost:4000/games/ID
 <br><br>
-VER HISTORIAL DE JUGADAS DE UN JUGADOR:<br>
+- VER HISTORIAL DE JUGADAS DE UN JUGADOR:<br>
 GET localhost:4000/games/ID
 <br><br>
-VER RANKING: <br>
+- VER RANKING: <br>
 GET localhost:4000/ranking
 <br><br>
-VER MEJOR JUGADOR:<br>
+- VER MEJOR JUGADOR:<br>
 GET localhost:4000/better-player
 <br><br>
-VER PEOR JUGADOR:<br>
+- VER PEOR JUGADOR:<br>
 GET localhost:4000/worst-player
 <br><br><br>
