@@ -1,0 +1,397 @@
+{
+	"info": {
+		"_postman_id": "a4692a65-d169-41e4-84bc-678107120826",
+		"name": "Sprint4.2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Signup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\": \"admin@admin\",\r\n\"password\": \"dieguitoarmando\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/signup",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"email\": \"admin@admin\",\r\n\"password\": \"dieguitoarmando\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/login",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Jugadores",
+			"item": [
+				{
+					"name": "Crear Jugador",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\": \"Dibu Martinez\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/players",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Jugador Anonimo",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/players",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Todos los Jugadores",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/players",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"players"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Nombre de un Jugador",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"username\": \"Inodoro Kid Pereyra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:4000/players/63d8dddee96fbb47e92b1b41",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"players",
+								"63d8dddee96fbb47e92b1b41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver un Jugador",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/player/63d8dddee96fbb47e92b1b41",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"player",
+								"63d8dddee96fbb47e92b1b41"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Jugador",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/player/63d8dddee96fbb47e92b1b41",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"player",
+								"63d8dddee96fbb47e92b1b41"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Juegos",
+			"item": [
+				{
+					"name": "Jugar un Juego",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/games/63c978fe6d6a6f019e0a5ac3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"games",
+								"63c978fe6d6a6f019e0a5ac3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Jugadas de un Jugador",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/games/63c978fe6d6a6f019e0a5ac3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"games",
+								"63c978fe6d6a6f019e0a5ac3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Juegos de un Jugador",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/games/63c978fe6d6a6f019e0a5ac3",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"games",
+								"63c978fe6d6a6f019e0a5ac3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ver Ranking",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/ranking",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"ranking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mejor Jugador",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/better-player",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"better-player"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Peor Jugador",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDhkY2Q3ZTk2ZmJiNDdlOTJiMWIzYiIsImlhdCI6MTY3NTE1NjY5NSwiZXhwIjoxNjc1MTYwMjk1fQ.152vUR3i6xvaPwET-DQjaV5MKTeA4SOsJ8HHnZlQ3ps",
+								"type": "default"
+							}
+						],
+						"url": {
+							"raw": "localhost:4000/worst-player",
+							"host": [
+								"localhost"
+							],
+							"port": "4000",
+							"path": [
+								"worst-player"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
