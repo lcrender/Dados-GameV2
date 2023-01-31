@@ -3,17 +3,19 @@
 
 Use el comando `npm install` para instalar todos los modulos necesarios para correr la aplicación.<br> 
 Crear archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
-DATABASE_LOCAL=localhost:27017/game<br>
-JWTSECRET=Maradona
+`DATABASE_LOCAL=localhost:27017/game`<br>`
+`JWTSECRET=Maradona`
 <br><br>
-`npm run dev`
+Iniciar el servicio de MongoDB.
 <br><br>
-
+Ejecutar la app con el comando `npm start`
+<br><br>
+Importar colección de Postman, (se encuentra en la raiz del proyecto)<br><br>
 - REGISTRAR UN ADMINISTRADOR:<br>
 `POST localhost:4000/signup`
 {
 "email": "admin@dadosv2.com",
-"password": “dieguitoarmando"
+"password": "dieguitoarmando"
 }
 <br>
 La app debe devolver un token , copiado y agrégalo en el header:<br>
@@ -31,7 +33,7 @@ Si ya registraste un administrador puedes iniciar sesión también te devolverá
 - CREAR JUGADOR:<br>
 `POST localhost:4000/players`
 {
-“username”: “algo"
+"username": "algo"
 }
 
 Si envias una peticion POST a la URL sin un JSON, la app creara un jugador “ANONIMO".<br>

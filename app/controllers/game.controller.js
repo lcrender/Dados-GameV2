@@ -13,7 +13,7 @@ gameCtrl.generalRanking = async (req, res) => {
     let totalWrate = players.reduce((acumulador, actual) => acumulador + actual.wonRate, 0);
     totalWrate = totalWrate / players.length
     const msg = `Total Won Rate: ${totalWrate}`
-    res.status(201).send(`${msg}\n${players}`)
+    res.status(201).json({msg, players})
 };
 gameCtrl.getBetterPlayer = async (req, res) => {
     const players = await Player.find({})
