@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const { JWTSECRET } = process.env;
 const authCtrl = {};
 
-authCtrl.signUp = async (req, res, next) => {
+authCtrl.signUp = async (req, res) => {
     const { email, password} = req.body;
     const user = new User({
         email,
@@ -16,7 +16,7 @@ authCtrl.signUp = async (req, res, next) => {
     })
     res.status(201).json({auth: true, token});
 };
-authCtrl.logIn = async (req, res, next) => {
+authCtrl.logIn = async (req, res) => {
     const {email, password} = req.body;
     const user = await User.findOne({email: email})
     if (!user) {
@@ -31,7 +31,7 @@ authCtrl.logIn = async (req, res, next) => {
     })
     res.status(201).json({auth: true, token}); 
 };
-authCtrl.viewMe = async (req, res, next) => {
+authCtrl.viewMe = async (req, res) => {
     const user = await User.findById(req.userId, { password: 0 });
     if (!user) {
         return res.status(404).send('No user found');
