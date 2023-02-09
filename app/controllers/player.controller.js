@@ -18,7 +18,7 @@ playerCtrl.newPlayer = async (req, res) => {
 			res.send('The Username is in use, try with another username');
 		}
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 playerCtrl.viewAll = async (req, res) => {
@@ -29,7 +29,7 @@ playerCtrl.viewAll = async (req, res) => {
 		}
 		res.json({ players });
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 playerCtrl.viewOne = async (req, res) => {
@@ -40,7 +40,7 @@ playerCtrl.viewOne = async (req, res) => {
 		}
 		res.status(201).json(player);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 playerCtrl.updatePlayer = async (req, res) => {
@@ -50,7 +50,7 @@ playerCtrl.updatePlayer = async (req, res) => {
 		const player = await Player.findById(req.params.id, { password: 0 });
 		res.status(201).json(player);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 playerCtrl.deletePlayer = async (req, res) => {
@@ -59,7 +59,7 @@ playerCtrl.deletePlayer = async (req, res) => {
 		await Player.findByIdAndDelete(id);
 		res.redirect('/players');
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 module.exports = playerCtrl;

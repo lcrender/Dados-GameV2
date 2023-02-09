@@ -6,18 +6,22 @@ const authCtrl = {};
 authCtrl.signUp = async (req, res) => {
 	try {
 		const { email, password } = req.body;
-		const user = new User({
-			email,
-			password
-		});
-		user.password = await user.encryptPassword(user.password);
-		await user.save();
-		const token = jwt.sign({ id: user._id }, JWTSECRET, {
-			expiresIn: 60 * 60 * 1
-		});
-		res.status(201).json({ auth: true, token });
+        if (!email || !password) {
+            return res.status(401).json({message: "Faltan datos para registrarse"})
+        } else {
+            const user = new User({
+                email,
+                password
+            });
+            user.password = await user.encryptPassword(user.password);
+            await user.save();
+            const token = jwt.sign({ id: user._id }, JWTSECRET, {
+                expiresIn: 60 * 60 * 1
+            });
+            res.status(201).json({ auth: true, token });
+        }
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 authCtrl.logIn = async (req, res) => {
@@ -25,7 +29,7 @@ authCtrl.logIn = async (req, res) => {
 		const { email, password } = req.body;
 		const user = await User.findOne({ email: email });
 		if (!user) {
-			return res.status(404).send("The email doesn't exists");
+			return res.status(404).json({message: "The email doesn't exists"});
 		}
 		const validPassword = await user.validatePassword(password);
 		if (!validPassword) {
@@ -36,18 +40,18 @@ authCtrl.logIn = async (req, res) => {
 		});
 		res.status(201).json({ auth: true, token });
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 authCtrl.viewMe = async (req, res) => {
 	try {
 		const user = await User.findById(req.userId, { password: 0 });
 		if (!user) {
-			return res.status(404).send('No user found');
+			return res.status(404).json({message: 'No user found'});
 		}
 		res.status(201).json(user);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 

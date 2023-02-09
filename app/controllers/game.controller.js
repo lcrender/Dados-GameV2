@@ -9,7 +9,7 @@ gameCtrl.playRollDice = async (req, res) => {
 		const playerRollDices = await game.playRollGame();
 		res.status(201).json(playerRollDices);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 gameCtrl.generalRanking = async (req, res) => {
@@ -20,7 +20,7 @@ gameCtrl.generalRanking = async (req, res) => {
 		const msg = `Total Won Rate: ${totalWrate}`;
 		res.status(201).json({ msg, players });
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 gameCtrl.getBetterPlayer = async (req, res) => {
@@ -33,7 +33,7 @@ gameCtrl.getBetterPlayer = async (req, res) => {
 		const betterPlayer = await Player.findOne({ wonRate: max }, { _id: 0, __v: 0 });
 		res.status(201).json({ betterPlayer });
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 gameCtrl.getWorstPlayer = async (req, res) => {
@@ -46,7 +46,7 @@ gameCtrl.getWorstPlayer = async (req, res) => {
 		const worstPlayer = await Player.findOne({ wonRate: min }, { _id: 0, __v: 0 });
 		res.status(201).json({ worstPlayer });
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 gameCtrl.deleteGames = async (req, res) => {
@@ -59,7 +59,7 @@ gameCtrl.deleteGames = async (req, res) => {
 		await player.save();
 		res.status(201).json(player);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 gameCtrl.viewGames = async (req, res) => {
@@ -70,7 +70,7 @@ gameCtrl.viewGames = async (req, res) => {
 		}
 		res.status(201).json(player);
 	} catch (error) {
-		res.status(401).json(error);
+		res.status(401).json({message: error});
 	}
 };
 module.exports = gameCtrl;
