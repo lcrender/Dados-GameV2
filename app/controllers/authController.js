@@ -21,7 +21,7 @@ authCtrl.signUp = async (req, res) => {
             res.status(201).json({ auth: true, token });
         }
 	} catch (error) {
-		res.status(401).json({message: error});
+		res.status(500).json({message: error});
 	}
 };
 authCtrl.logIn = async (req, res) => {
@@ -40,7 +40,7 @@ authCtrl.logIn = async (req, res) => {
 		});
 		res.status(201).json({ auth: true, token });
 	} catch (error) {
-		res.status(401).json({message: error});
+		res.status(500).json({message: error});
 	}
 };
 authCtrl.viewMe = async (req, res) => {
@@ -51,7 +51,7 @@ authCtrl.viewMe = async (req, res) => {
 		}
 		res.status(200).json(user);
 	} catch (error) {
-		res.status(401).json({message: error});
+		res.status(500).json({message: error});
 	}
 };
 
