@@ -7,7 +7,7 @@ authCtrl.signUp = async (req, res) => {
 	try {
 		const { email, password } = req.body;
         if (!email || !password) {
-            return res.status(401).json({message: "Faltan datos para registrarse"})
+            return res.status(400).json({message: "Faltan datos para registrarse"})
         } else {
             const user = new User({
                 email,
@@ -29,7 +29,7 @@ authCtrl.logIn = async (req, res) => {
 		const { email, password } = req.body;
 		const user = await User.findOne({ email: email });
 		if (!user) {
-			return res.status(404).json({message: "The email doesn't exists"});
+			return res.status(400).json({message: "The email doesn't exists"});
 		}
 		const validPassword = await user.validatePassword(password);
 		if (!validPassword) {
@@ -47,7 +47,7 @@ authCtrl.viewMe = async (req, res) => {
 	try {
 		const user = await User.findById(req.userId, { password: 0 });
 		if (!user) {
-			return res.status(404).json({message: 'No user found'});
+			return res.status(401).json({message: 'No user found'});
 		}
 		res.status(200).json(user);
 	} catch (error) {
