@@ -15,7 +15,7 @@ playerCtrl.newPlayer = async (req, res) => {
 			await player.save();
 			res.status(201).json(player);
 		} else {
-			res.send('The Username is in use, try with another username');
+			res.status(401).json({message: 'The Username is in use, try with another username'});
 		}
 	} catch (error) {
 		res.status(401).json({message: error});
@@ -25,9 +25,9 @@ playerCtrl.viewAll = async (req, res) => {
 	try {
 		const players = await Player.find(req.userId, { password: 0, __v: 0 });
 		if (!players || players.length < 1) {
-			return res.status(404).send('No player found');
+			return res.status(404).json({message: 'No player found'});
 		}
-		res.json({ players });
+		res.status(200).json({ players });
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
@@ -38,7 +38,7 @@ playerCtrl.viewOne = async (req, res) => {
 		if (!player) {
 			return res.status(404).send('No player found');
 		}
-		res.status(201).json(player);
+		res.status(200).json(player);
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
@@ -57,7 +57,7 @@ playerCtrl.deletePlayer = async (req, res) => {
 	try {
 		const id = req.params.id;
 		await Player.findByIdAndDelete(id);
-		res.redirect('/players');
+		res.status(201).json({message: "Player deleted"});
 	} catch (error) {
 		res.status(401).json({message: error});
 	}

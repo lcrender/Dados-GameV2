@@ -49,7 +49,7 @@ authCtrl.viewMe = async (req, res) => {
 		if (!user) {
 			return res.status(404).json({message: 'No user found'});
 		}
-		res.status(201).json(user);
+		res.status(200).json(user);
 	} catch (error) {
 		res.status(401).json({message: error});
 	}

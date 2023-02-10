@@ -18,7 +18,7 @@ gameCtrl.generalRanking = async (req, res) => {
 		let totalWrate = players.reduce((acumulador, actual) => acumulador + actual.wonRate, 0);
 		totalWrate = totalWrate / players.length;
 		const msg = `Total Won Rate: ${totalWrate}`;
-		res.status(201).json({ msg, players });
+		res.status(200).json({ msg, players });
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
@@ -31,7 +31,7 @@ gameCtrl.getBetterPlayer = async (req, res) => {
 			player.wonRate > max ? (max = player.wonRate) : null;
 		});
 		const betterPlayer = await Player.findOne({ wonRate: max }, { _id: 0, __v: 0 });
-		res.status(201).json({ betterPlayer });
+		res.status(200).json({ betterPlayer });
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
@@ -44,7 +44,7 @@ gameCtrl.getWorstPlayer = async (req, res) => {
 			player.wonRate < min ? (min = player.wonRate) : null;
 		});
 		const worstPlayer = await Player.findOne({ wonRate: min }, { _id: 0, __v: 0 });
-		res.status(201).json({ worstPlayer });
+		res.status(200).json({ worstPlayer });
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
@@ -68,7 +68,7 @@ gameCtrl.viewGames = async (req, res) => {
 		if (!player) {
 			return res.status(404).send('No player found');
 		}
-		res.status(201).json(player);
+		res.status(200).json(player);
 	} catch (error) {
 		res.status(401).json({message: error});
 	}
