@@ -1,5 +1,4 @@
-// const { rollDices } = require('../helpers/dices');
-const Player = require('../models/Player');
+const pool = require('../db.js');
 const rollDices = async () => {
     const dice1= Math.floor(6 * Math.random()) + 1;
     const dice2 = Math.floor(6 * Math.random()) + 1;
@@ -11,29 +10,37 @@ const rollDices = async () => {
         veredict
     };
 };
+
 class RollGame {
     id
     constructor(id) {
         this.id = id;
     };
-    async playRollGame() {
-        const game = await rollDices()
-        const player = await Player.findById({_id: this.id})
-        player.totalGames++;
+    async playRollGame(id) {
+        const game = await rollDices();
+        // await pool.query('UPDATE players SET totalGames = totalGames + 1 WHERE id = ?', [id]);
         if (game.veredict === 'win') {
-            player.gamesWon++;
-        }
-        player.playHistory.push(game);
-        player.wonRate = parseFloat(((player.gamesWon / player.totalGames) * 100).toFixed(2));
-        await player.save();
-        const result = {
+            
+            // await pool.query('UPDATE players SET wonRate = gamesWon / totalGames * 100 WHERE id = ?', [id]);
+             await pool.query('UPDATE players SET gamesWon = gamesWon + 1, totalGames = totalGames + 1, wonRate = gamesWon / totalGames * 100 WHERE id = ?', [id]);
+             await pool.query('INSERT INTO playHistory SET indice = ?, dice1 = ?, dice2 = ?, score = ?, veredict = ?', [id, game.dice1, game.dice2, game.rolScore, game.veredict]);
+             const result = {
+                "dice1": game.dice1,
+                "dice2": game.dice2,
+                "Score": game.rolScore,
+                "Veredict": game.veredict
+            }
+            return result
+         }
+         await pool.query('UPDATE players SET totalGames = totalGames + 1, wonRate = gamesWon / totalGames * 100 WHERE id = ?', [id]);
+         await pool.query('INSERT INTO playHistory SET indice = ?, dice1 = ?, dice2 = ?, score = ?, veredict = ?', [id, game.dice1, game.dice2, game.rolScore, game.veredict]);
+         const result = {
             "dice1": game.dice1,
             "dice2": game.dice2,
             "Score": game.rolScore,
             "Veredict": game.veredict
         }
-        return result
-    };
+    return result}
 };
 
 module.exports = RollGame;
