@@ -1,12 +1,22 @@
-# DADOS GAME V2<br>
+# DADOS GAME MYSQL<br>
 #### PASOS PARA UTILIZAR LA APP<br>
 
+Clonar el proyecto de github y desde una terminal:<br>
+Ejecutar mysql.<br>
+Crea una base de datos nueva `CREATE DATABASE IF NOT EXIST dbName;`<br>
+Importa el archivo que se encuentra en db/db.sql para crear la estructura de la base de datos. Podes usar el comando `mysql -u root -p < db/db.sql` desde una terminal en la carpeta root del sitio. <br>
 Use el comando `npm install` para instalar todos los modulos necesarios para correr la aplicación.<br> 
-Crear archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
-`DATABASE_LOCAL=localhost:27017/game`<br>`
-`JWTSECRET=Maradona`
-<br><br>
-Iniciar el servicio de MongoDB.
+Crear archivo edita el archivo .env.template (debe quedar como .env) o crea un archivo .env nuevo en la raíz del proyecto con los datos de tu base de datos:<br><br>
+```
+PORT=4000
+PORTDB=3306
+HOSTDB=localhost
+DATAB=dadosmysql
+USERDB=root
+PASSDB=pass
+JWTSECRET=M@radona!
+```
+
 <br><br>
 Ejecutar la app con el comando `npm start`
 <br><br>
