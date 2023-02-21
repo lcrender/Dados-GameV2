@@ -19,7 +19,7 @@ gameCtrl.generalRanking = async (req, res) => {
 		for (i = 0; i < players.length; i++) {
 			acumulador = acumulador + players[i].gamesWon;
 		}
-		const totalWrate = acumulador / players.length;
+		const totalWrate = (acumulador / players.length) * 100;
 		const msg = `Total Won Rate: ${totalWrate}`;
 		res.status(200).json({ msg: msg, players: players });
 	} catch (error) {
@@ -28,7 +28,10 @@ gameCtrl.generalRanking = async (req, res) => {
 };
 gameCtrl.getBetterPlayer = async (req, res) => {
 	try {
-		const [ players ] = await pool.query('SELECT * FROM players ORDER BY players.wonRate DESC LIMIT 1');
+		const [highestWonRate] = await pool.query('SELECT MAX(wonRate) AS highestWonRate FROM players');
+		console.log(highestWonRate[0].highestWonRate)
+		const [players] = await pool.query('SELECT * FROM players WHERE wonRate = ? ORDER BY wonRate ASC, totalGames ASC', [highestWonRate[0].highestWonRate]);
+		//console.log(players)
 		res.status(200).json({ Betterplayers: players });
 	} catch (error) {
 		res.status(500).json({ message: error });
@@ -36,19 +39,18 @@ gameCtrl.getBetterPlayer = async (req, res) => {
 };
 gameCtrl.getWorstPlayer = async (req, res) => {
 	try {
-		const [ players ] = await pool.query('SELECT * FROM players ORDER BY players.wonRate ASC LIMIT 1');
-		res.status(200).json({ Worstplayer: players });
+		const [lowerWonRate] = await pool.query('SELECT MIN(wonRate) AS lowerWonRate FROM players');
+		console.log(lowerWonRate)
+		const [players] = await pool.query('SELECT * FROM players WHERE wonRate = ? ORDER BY wonRate DESC, totalGames DESC', [lowerWonRate[0].lowerWonRate]);
+		console.log(players)
+		res.status(200).json({ Betterplayers: players });
 	} catch (error) {
 		res.status(500).json({ message: error });
 	}
 };
 gameCtrl.deleteGames = async (req, res) => {
 	try {
-		const [
-			result
-		] = await pool.query('UPDATE players SET totalGames = 0, gamesWon = 0, wonRate = 0 WHERE id = ?', [
-			req.params.id
-		]);
+		const [result] = await pool.query('UPDATE players SET totalGames = 0, gamesWon = 0, wonRate = 0 WHERE id = ?', [req.params.id]);
 		if (result.affectedRows <= 0) return res.status(404).json({ message: 'player not found' });
 		const games = await pool.query('DELETE FROM playHistory WHERE indice = ?', [ req.params.id ]);
 		res.status(201).json(result);
@@ -58,9 +60,9 @@ gameCtrl.deleteGames = async (req, res) => {
 };
 gameCtrl.viewGames = async (req, res) => {
 	try {
-		const [ rows ] = await pool.query('SELECT * FROM players WHERE id = ?', [ req.params.id ]);
-		if (rows.length <= 0) return res.status(404).json({ message: 'player not found' });
-		res.status(200).json(rows[0]);
+		const infoGames = await pool.query('SELECT * FROM playHistory WHERE indice = ?', [req.params.id])
+		if (infoGames.length <= 0) return res.status(404).json({ message: 'Not found Games for this player' });
+		res.status(200).json(infoGames[0]);
 	} catch (error) {
 		res.status(500).json({ message: error });
 	}

@@ -14,7 +14,7 @@ const encryptPassword = (password) => {
 const comparePassword = (password, hash) => {
 	return bcrypt.compareSync(password, hash);
 };
-
+// Signup Function
 authCtrl.signUp = async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -34,6 +34,7 @@ authCtrl.signUp = async (req, res) => {
 		res.status(500).json({ message: error });
 	}
 };
+// Login Function
 authCtrl.logIn = async (req, res) => {
 	try {
 		const { email, password } = req.body;
@@ -46,7 +47,7 @@ authCtrl.logIn = async (req, res) => {
 		const token = jwt.sign({ rows }, JWTSECRET, {
 			expiresIn: 60 * 60 * 1
 		});
-		res.status(201).json({ auth: true, token });
+		res.status(201).json({ auth: true, token, id: rows[0].id });
 	} catch (error) {
 		res.status(500).json({ message: error });
 	}
