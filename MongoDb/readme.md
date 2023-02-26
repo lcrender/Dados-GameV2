@@ -1,14 +1,16 @@
-# DADOS GAME V2<br>
+# DADOS GAME MYSQL<br>
 #### PASOS PARA UTILIZAR LA APP<br>
 
+Clonar el proyecto de github y desde una terminal:<br>
+Ejecutar Mongodb.<br>
 Use el comando `npm install` para instalar todos los modulos necesarios para correr la aplicación.<br> 
-Crear archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
+Renombra el archivo .env.template que se encuentra en la raiz del sitio (debe quedar .env), edita los datos con el URI de tu base de datos. Crea una frase secreta para el Json Web Token. o Crea el archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
 DATABASE_LOCAL=localhost:27017/game<br>
 JWTSECRET=Maradona
 <br><br>
 `npm run dev`
 <br><br>
-
+ 
 - REGISTRAR UN ADMINISTRADOR:<br>
 `POST localhost:4000/signup`
 {
