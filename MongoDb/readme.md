@@ -2,30 +2,20 @@
 #### PASOS PARA UTILIZAR LA APP<br>
 
 Clonar el proyecto de github y desde una terminal:<br>
-Ejecutar mysql.<br>
-Crea una base de datos nueva `CREATE DATABASE IF NOT EXIST dbName;`<br>
-Importa el archivo que se encuentra en db/db.sql para crear la estructura de la base de datos. Podes usar el comando `mysql -u root -p < db/db.sql` desde una terminal en la carpeta root del sitio. <br>
+Ejecutar Mongodb.<br>
 Use el comando `npm install` para instalar todos los modulos necesarios para correr la aplicación.<br> 
-Crear archivo edita el archivo .env.template (debe quedar como .env) o crea un archivo .env nuevo en la raíz del proyecto con los datos de tu base de datos:<br><br>
-```
-PORT=4000
-PORTDB=3306
-HOSTDB=localhost
-DATAB=dadosmysql
-USERDB=root
-PASSDB=pass
-JWTSECRET=M@radona!
-```
-
+Renombra el archivo .env.template que se encuentra en la raiz del sitio (debe quedar .env), edita los datos con el URI de tu base de datos. Crea una frase secreta para el Json Web Token. o Crea el archivo .env en la raíz del proyecto con los siguientes datos:<br><br>
+DATABASE_LOCAL=localhost:27017/game<br>
+JWTSECRET=Maradona
 <br><br>
-Ejecutar la app con el comando `npm start`
+`npm run dev`
 <br><br>
-Importar colección de Postman, (se encuentra en la raiz del proyecto)<br><br>
+ 
 - REGISTRAR UN ADMINISTRADOR:<br>
 `POST localhost:4000/signup`
 {
 "email": "admin@dadosv2.com",
-"password": "dieguitoarmando"
+"password": “dieguitoarmando"
 }
 <br>
 La app debe devolver un token , copiado y agrégalo en el header:<br>
@@ -43,7 +33,7 @@ Si ya registraste un administrador puedes iniciar sesión también te devolverá
 - CREAR JUGADOR:<br>
 `POST localhost:4000/players`
 {
-"username": "algo"
+“username”: “algo"
 }
 
 Si envias una peticion POST a la URL sin un JSON, la app creara un jugador “ANONIMO".<br>
